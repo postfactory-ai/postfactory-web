@@ -2,14 +2,16 @@
 
 import { ArrowRight, Sparkles, Zap } from 'lucide-react'
 import { useState } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function Hero() {
   const [email, setEmail] = useState('')
+  const { t } = useLanguage()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('Email submitted:', email)
-    // TODO: Add email subscription logic
+    // Google Forms'a yönlendir
+    window.open('https://forms.gle/YOUR_FORM_LINK', '_blank')
   }
 
   return (
@@ -28,14 +30,13 @@ export default function Hero() {
 
           {/* Main headline */}
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
-            Create Stunning Social Media Posts
-            <span className="block gradient-text">in Seconds with AI</span>
+            {t.heroTitle1}
+            <span className="block gradient-text">{t.heroTitle2}</span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
-            PostFactory AI generates eye-catching images, writes engaging captions, and suggests 
-            perfect hashtags—all in one click. Save hours every week!
+            {t.heroSubtitle}
           </p>
 
           {/* Email capture */}
@@ -43,7 +44,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-4">
               <input
                 type="email"
-                placeholder="Enter your work email"
+                placeholder={t.emailPlaceholder}
                 className="flex-grow px-6 py-4 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -53,12 +54,12 @@ export default function Hero() {
                 type="submit"
                 className="btn-primary flex items-center justify-center gap-2 whitespace-nowrap"
               >
-                Start Free Trial
+                {t.startTrial}
                 <ArrowRight className="h-5 w-5" />
               </button>
             </div>
             <p className="text-sm text-gray-500 mt-4">
-              Try free for 14 days • No credit card required
+              {t.freeTrialNote}
             </p>
           </form>
 
