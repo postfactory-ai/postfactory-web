@@ -1,13 +1,12 @@
-import { Inter } from 'next/font/google'
 import './globals.css'
-import Footer from './../components/Footer'
-import { LanguageProvider } from './../contexts/LanguageContext'
+import { Inter } from 'next/font/google'
+import { LanguageProvider } from '../contexts/LanguageContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'PostFactory AI - AI-Powered Social Media Content',
-  description: 'Generate stunning social media posts in seconds with AI',
+  title: 'PostFactory - AI Content Studio',
+  description: 'AI-powered social media content factory',
 }
 
 export default function RootLayout({ children }) {
@@ -15,10 +14,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <LanguageProvider>
-          <main className="min-h-screen">
-            {children}
-          </main>
-          <Footer />
+          {/* NAVBAR YOK BURADA - page.js'de var */}
+          {children}
         </LanguageProvider>
       </body>
     </html>
