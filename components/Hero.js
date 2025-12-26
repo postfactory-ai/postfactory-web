@@ -2,7 +2,7 @@
 
 import { ArrowRight, Sparkles, Zap } from 'lucide-react'
 import { useState } from 'react'
-import { useLanguage } from '@/contexts/LanguageContext'
+import { useLanguage } from '../contexts/LanguageContext'
 
 export default function Hero() {
   const [email, setEmail] = useState('')
