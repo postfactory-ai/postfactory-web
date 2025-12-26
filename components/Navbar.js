@@ -1,7 +1,6 @@
 'use client'
 
-import { useState } from 'react'
-import Link from 'next/link'
+import { useState, useEffect } from 'react'
 import { Menu, X, Rocket, Globe, ChevronDown } from 'lucide-react'
 import { useLanguage } from '@/contexts/LanguageContext'
 
@@ -10,35 +9,55 @@ export default function Navbar() {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false)
   const { language, t, changeLanguage, languages } = useLanguage()
 
+  // Sayfa yüklendiğinde dil kontrolü
+  useEffect(() => {
+    const savedLang = localStorage.getItem('preferred-language')
+    if (!savedLang) {
+      // Hiç dil kaydedilmemişse, İngilizce yap
+      localStorage.setItem('preferred-language', 'en')
+      changeLanguage('en')
+    }
+  }, [])
+
   const handleLanguageChange = (langCode) => {
     changeLanguage(langCode)
     setIsLanguageOpen(false)
     setIsMenuOpen(false)
   }
 
-  const scrollToTop = (e) => {
+  const handleLogoClick = (e) => {
     e.preventDefault()
+    // Ana sayfaya smooth scroll
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     })
+    
+    // Eğer hash varsa kaldır
+    if (window.location.hash) {
+      window.history.replaceState(null, null, ' ')
+    }
   }
 
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo - TIKLANABİLİR (Next.js Link ile) */}
-          <Link 
-            href="/" 
-            className="flex items-center hover:opacity-80 transition-opacity cursor-pointer"
-            onClick={scrollToTop}
+          {/* Logo - KESİN TIKLANABİLİR */}
+          <a 
+            href="#" 
+            className="flex items-center hover:opacity-80 transition-opacity cursor-pointer active:scale-95"
+            onClick={handleLogoClick}
+            title="Ana sayfaya dön"
           >
-            <Rocket className="h-8 w-8 text-primary-600" />
+            <div className="relative">
+              <Rocket className="h-8 w-8 text-primary-600" />
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-secondary-500 rounded-full animate-pulse"></div>
+            </div>
             <span className="ml-2 text-2xl font-bold gradient-text">
               PostFactory<span className="text-secondary-600">.AI</span>
             </span>
-          </Link>
+          </a>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
