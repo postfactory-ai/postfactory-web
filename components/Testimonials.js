@@ -1,7 +1,7 @@
 'use client'
 
 import { Star, Quote } from 'lucide-react'
-import { useLanguage } from '@/contexts/LanguageContext'
+import { useLanguage } from '../contexts/LanguageContext'
 
 const testimonials = [
   {
