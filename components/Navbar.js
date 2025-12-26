@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { Menu, X, Rocket, Globe, ChevronDown } from 'lucide-react'
 import { useLanguage } from '@/contexts/LanguageContext'
 
@@ -21,15 +22,14 @@ export default function Navbar() {
       top: 0,
       behavior: 'smooth'
     })
-    window.history.pushState({}, '', '/')
   }
 
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo - TIKLANABİLİR */}
-          <a 
+          {/* Logo - TIKLANABİLİR (Next.js Link ile) */}
+          <Link 
             href="/" 
             className="flex items-center hover:opacity-80 transition-opacity cursor-pointer"
             onClick={scrollToTop}
@@ -38,7 +38,7 @@ export default function Navbar() {
             <span className="ml-2 text-2xl font-bold gradient-text">
               PostFactory<span className="text-secondary-600">.AI</span>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
