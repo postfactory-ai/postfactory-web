@@ -15,17 +15,30 @@ export default function Navbar() {
     setIsMenuOpen(false)
   }
 
+  const scrollToTop = (e) => {
+    e.preventDefault()
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+    window.history.pushState({}, '', '/')
+  }
+
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center">
+          {/* Logo - TIKLANABİLİR */}
+          <a 
+            href="/" 
+            className="flex items-center hover:opacity-80 transition-opacity cursor-pointer"
+            onClick={scrollToTop}
+          >
             <Rocket className="h-8 w-8 text-primary-600" />
             <span className="ml-2 text-2xl font-bold gradient-text">
               PostFactory<span className="text-secondary-600">.AI</span>
             </span>
-          </div>
+          </a>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
@@ -126,7 +139,10 @@ export default function Navbar() {
               <div className="px-3 py-2 border-t">
                 <div className="font-medium text-gray-500 mb-2 flex items-center">
                   <Globe className="h-5 w-5 mr-2" />
-                  Select Language
+                  {language === 'tr' ? 'Dil Seçin' : 
+                   language === 'es' ? 'Seleccionar Idioma' :
+                   language === 'de' ? 'Sprache Auswählen' :
+                   'Select Language'}
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   {languages.map((lang) => (
