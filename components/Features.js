@@ -1,5 +1,7 @@
+'use client'
+
 import { Image, Zap, Brain, BarChart, Shield, Users } from 'lucide-react'
-import { useLanguage } from '@/contexts/LanguageContext'
+import { useLanguage } from '../contexts/LanguageContext'
 
 const features = [
   {
