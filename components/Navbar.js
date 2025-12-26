@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Menu, X, Globe, ChevronDown } from 'lucide-react'
+import { Menu, X, Globe, ChevronDown, Rocket, Sparkles } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
 
 export default function Navbar() {
@@ -228,22 +228,13 @@ export default function Navbar() {
               )}
             </div>
 
-            <div className="flex items-center space-x-4">
+            {/* SADECE GET STARTED BUTONU - WAITLIST YOK */}
+            <div className="flex items-center">
               <a 
-                href="https://forms.gle/YOUR_FORM_LINK" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="px-6 py-2.5 rounded-full bg-gradient-to-r from-gray-900 to-black text-white text-sm font-semibold hover:from-gray-800 hover:to-gray-900 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105"
+                href="#pricing"
+                className="px-8 py-2.5 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 group relative overflow-hidden flex items-center"
               >
-                {t.joinWaitlist}
-              </a>
-              
-              <a 
-                href="https://forms.gle/YOUR_FORM_LINK" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="px-8 py-2.5 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 group relative overflow-hidden"
-              >
+                <Sparkles className="h-4 w-4 mr-2" />
                 <span className="relative z-10">{t.getStarted}</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
               </a>
@@ -263,6 +254,7 @@ export default function Navbar() {
           </button>
         </div>
 
+        {/* Mobile Menu - WAITLIST YOK */}
         {isMenuOpen && (
           <div className="lg:hidden bg-white/95 backdrop-blur-lg border-t border-gray-200 shadow-lg rounded-b-2xl mt-2">
             <div className="px-4 pt-4 pb-6 space-y-1">
@@ -321,22 +313,13 @@ export default function Navbar() {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-gray-100 space-y-3">
+              {/* SADECE GET STARTED BUTONU - WAITLIST YOK */}
+              <div className="pt-4 border-t border-gray-100">
                 <a 
-                  href="https://forms.gle/YOUR_FORM_LINK" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block w-full text-center px-4 py-3 rounded-xl bg-gradient-to-r from-gray-900 to-black text-white font-semibold hover:opacity-90 transition-opacity"
+                  href="#pricing"
+                  className="block w-full text-center px-4 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:opacity-90 transition-opacity shadow-md flex items-center justify-center"
                 >
-                  {t.joinWaitlist}
-                </a>
-                
-                <a 
-                  href="https://forms.gle/YOUR_FORM_LINK" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block w-full text-center px-4 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:opacity-90 transition-opacity shadow-md"
-                >
+                  <Sparkles className="h-4 w-4 mr-2" />
                   {t.getStarted}
                 </a>
               </div>
