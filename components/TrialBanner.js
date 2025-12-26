@@ -62,8 +62,8 @@ export default function TrialBanner() {
   return (
     <>
       {isVisible && (
-        <div className={`fixed z-40 w-full ${isScrolled ? 'top-0' : 'top-0'}`}>
-          <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white shadow-lg">
+<div className={`fixed z-30 w-full ${isScrolled ? 'top-0' : 'top-0'}`}>
+  <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white shadow-lg">
             <div className="max-w-8xl mx-auto px-4 py-2">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
