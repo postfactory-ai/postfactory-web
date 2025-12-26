@@ -72,8 +72,17 @@ const plans = [
 export default function Pricing() {
   const [billingPeriod, setBillingPeriod] = useState('monthly')
 
+  const handleButtonClick = (planName) => {
+    // Google Forms link - SEN BURAYA KENDİ LİNKİNİ KOYACAKSIN
+    const formLink = "https://forms.gle/YOUR_FORM_LINK_HERE"
+    window.open(formLink, '_blank')
+    
+    // Optional: Track which plan was clicked
+    console.log(`${planName} plan selected`)
+  }
+
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section id="pricing" className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -133,11 +142,14 @@ export default function Pricing() {
                   )}
                 </div>
 
-                <button className={`w-full py-3 rounded-full font-bold mb-8 ${
-                  plan.popular 
-                    ? 'btn-primary' 
-                    : 'border-2 border-primary-600 text-primary-600 hover:bg-primary-50'
-                }`}>
+                <button 
+                  onClick={() => handleButtonClick(plan.name)}
+                  className={`w-full py-3 rounded-full font-bold mb-8 ${
+                    plan.popular 
+                      ? 'btn-primary' 
+                      : 'border-2 border-primary-600 text-primary-600 hover:bg-primary-50'
+                  }`}
+                >
                   {plan.buttonText}
                 </button>
 
@@ -178,6 +190,10 @@ export default function Pricing() {
               {
                 q: "How accurate is the AI content generation?",
                 a: "Our AI is trained on millions of successful social media posts and continuously improves. Most users achieve 90%+ satisfaction with generated content."
+              },
+              {
+                q: "Is there a free trial?",
+                a: "Yes! All paid plans come with a 14-day free trial. No credit card required to start."
               }
             ].map((faq, idx) => (
               <div key={idx} className="bg-white rounded-2xl p-6 border border-gray-200">
