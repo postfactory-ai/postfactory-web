@@ -2,22 +2,32 @@
 
 import { useState, useEffect } from 'react'
 import { Menu, X, Rocket, Globe, ChevronDown } from 'lucide-react'
-import { useLanguage } from '@/contexts/LanguageContext'
+import { useLanguage } from '../contexts/LanguageContext'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isLanguageOpen, setIsLanguageOpen] = useState(false)
   const { language, t, changeLanguage, languages } = useLanguage()
 
-  // Sayfa yüklendiğinde dil kontrolü
+  // Varsayılan dili İngilizce yap
   useEffect(() => {
-    const savedLang = localStorage.getItem('preferred-language')
+    const savedLang = localStorage.getItem('postfactory-language')
     if (!savedLang) {
-      // Hiç dil kaydedilmemişse, İngilizce yap
-      localStorage.setItem('preferred-language', 'en')
+      // İlk defa açılıyorsa İngilizce yap
+      localStorage.setItem('postfactory-language', 'en')
       changeLanguage('en')
+    } else if (savedLang !== language) {
+      // Kayıtlı dil farklıysa onu yükle
+      changeLanguage(savedLang)
     }
   }, [])
+
+  // Dil değişince localStorage'a kaydet
+  useEffect(() => {
+    if (language) {
+      localStorage.setItem('postfactory-language', language)
+    }
+  }, [language])
 
   const handleLanguageChange = (langCode) => {
     changeLanguage(langCode)
@@ -25,30 +35,32 @@ export default function Navbar() {
     setIsMenuOpen(false)
   }
 
-  const handleLogoClick = (e) => {
-    e.preventDefault()
+  const handleLogoClick = () => {
     // Ana sayfaya smooth scroll
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     })
     
-    // Eğer hash varsa kaldır
+    // URL'de hash varsa temizle
     if (window.location.hash) {
       window.history.replaceState(null, null, ' ')
     }
+    
+    // Mobile menüyü kapat
+    setIsMenuOpen(false)
   }
 
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo - KESİN TIKLANABİLİR */}
-          <a 
-            href="#" 
-            className="flex items-center hover:opacity-80 transition-opacity cursor-pointer active:scale-95"
+          {/* Logo - KESİN ÇÖZÜM */}
+          <button 
             onClick={handleLogoClick}
+            className="flex items-center hover:opacity-80 transition-opacity cursor-pointer active:scale-95 focus:outline-none"
             title="Ana sayfaya dön"
+            aria-label="Ana sayfaya dön"
           >
             <div className="relative">
               <Rocket className="h-8 w-8 text-primary-600" />
@@ -57,7 +69,7 @@ export default function Navbar() {
             <span className="ml-2 text-2xl font-bold gradient-text">
               PostFactory<span className="text-secondary-600">.AI</span>
             </span>
-          </a>
+          </button>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
