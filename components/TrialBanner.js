@@ -112,9 +112,10 @@ export default function TrialBanner() {
         </div>
       )}
 
+      {/* BODY PADDING KALDIRILDI */}
       <style jsx global>{`
         body {
-          padding-top: ${isVisible ? (isMobile ? '60px' : '50px') : '0px'};
+          padding-top: 0px !important;
         }
       `}</style>
     </>
