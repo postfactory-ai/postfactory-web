@@ -113,11 +113,6 @@ export default function TrialBanner() {
       )}
 
       {/* BODY PADDING KALDIRILDI */}
-      <style jsx global>{`
-        body {
-          padding-top: 0px !important;
-        }
-      `}</style>
     </>
   )
 }
