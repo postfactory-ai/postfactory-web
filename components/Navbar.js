@@ -1,88 +1,18 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Menu, X, Rocket, Globe, ChevronDown } from 'lucide-react'
-
-// Dil çevirileri
-const translations = {
-  en: {
-    features: "Features",
-    howItWorks: "How It Works",
-    pricing: "Pricing",
-    testimonials: "Testimonials",
-    getStarted: "Get Started Free",
-    joinWaitlist: "Join Waitlist",
-    language: "English"
-  },
-  tr: {
-    features: "Özellikler",
-    howItWorks: "Nasıl Çalışır",
-    pricing: "Fiyatlandırma",
-    testimonials: "Müşteri Yorumları",
-    getStarted: "Ücretsiz Başla",
-    joinWaitlist: "Waitlist'e Katıl",
-    language: "Türkçe"
-  },
-  es: {
-    features: "Características",
-    howItWorks: "Cómo Funciona",
-    pricing: "Precios",
-    testimonials: "Testimonios",
-    getStarted: "Comienza Gratis",
-    joinWaitlist: "Únete a la Lista",
-    language: "Español"
-  },
-  de: {
-    features: "Funktionen",
-    howItWorks: "So Funktioniert's",
-    pricing: "Preise",
-    testimonials: "Erfahrungen",
-    getStarted: "Kostenlos Starten",
-    joinWaitlist: "Warteliste",
-    language: "Deutsch"
-  }
-}
-
-// Dil bayrakları ve kodları
-const languages = [
-  { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'de', name: 'Deutsch', flag: '🇩🇪' }
-]
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isLanguageOpen, setIsLanguageOpen] = useState(false)
-  const [language, setLanguage] = useState('en')
-  const [t, setT] = useState(translations.en)
-
-  // Dil değiştiğinde çevirileri güncelle
-  useEffect(() => {
-    setT(translations[language])
-    
-    // Dil değişikliğini localStorage'a kaydet (sonraki ziyaretler için)
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('preferred-language', language)
-    }
-    
-    // Dil değişti mesajı (isteğe bağlı, kaldırabilirsin)
-    console.log(`Language changed to: ${languages.find(l => l.code === language)?.name}`)
-  }, [language])
-
-  // Sayfa yüklendiğinde kayıtlı dili yükle
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedLang = localStorage.getItem('preferred-language')
-      if (savedLang && translations[savedLang]) {
-        setLanguage(savedLang)
-      }
-    }
-  }, [])
+  const { language, t, changeLanguage, languages } = useLanguage()
 
   const handleLanguageChange = (langCode) => {
-    setLanguage(langCode)
+    changeLanguage(langCode)
     setIsLanguageOpen(false)
+    setIsMenuOpen(false)
   }
 
   return (
