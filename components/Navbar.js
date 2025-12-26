@@ -62,7 +62,6 @@ export default function Navbar() {
   }
 
   return (
-    {/* BURASI ÇOK ÖNEMLİ: top-0 YAPILDI */}
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -92,10 +91,10 @@ export default function Navbar() {
                     className="transition-all duration-500 group-hover:stroke-[2px] opacity-80"
                   />
                   
-                  <circle cx="20" cy="50" r="5" fill="url(#nodeGradient)" className="transition-all duration-300 group-hover:r-6" />
-                  <circle cx="50" cy="30" r="4" fill="url(#nodeGradient)" className="transition-all duration-300 group-hover:r-5" />
-                  <circle cx="80" cy="50" r="5" fill="url(#nodeGradient)" className="transition-all duration-300 group-hover:r-6" />
-                  <circle cx="50" cy="70" r="4" fill="url(#nodeGradient)" className="transition-all duration-300 group-hover:r-5" />
+                  <circle cx="20" cy="50" r="5" fill="url(#nodeGradient)" />
+                  <circle cx="50" cy="30" r="4" fill="url(#nodeGradient)" />
+                  <circle cx="80" cy="50" r="5" fill="url(#nodeGradient)" />
+                  <circle cx="50" cy="70" r="4" fill="url(#nodeGradient)" />
                   
                   <text
                     x="50"
@@ -106,8 +105,7 @@ export default function Navbar() {
                       fontFamily: "'Fira Code', monospace",
                       fontSize: '28px',
                       fill: 'url(#textGradient)',
-                      fontWeight: '800',
-                      letterSpacing: '-1px'
+                      fontWeight: '800'
                     }}
                   >
                     PF
@@ -133,8 +131,6 @@ export default function Navbar() {
                   </defs>
                 </svg>
               </div>
-              
-              <div className="absolute -bottom-1 left-1/2 h-1 w-6 -translate-x-1/2 rounded-full bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
 
             <div className="flex flex-col text-left">
@@ -152,52 +148,48 @@ export default function Navbar() {
             <div className="flex items-center space-x-8">
               <button 
                 onClick={(e) => handleNavClick(e, 'features')}
-                className="text-gray-700 hover:text-blue-600 font-medium text-sm uppercase tracking-wide transition-colors relative group"
+                className="text-gray-700 hover:text-blue-600 font-medium text-sm uppercase tracking-wide transition-colors"
               >
                 {t.features}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300" />
               </button>
               
               <button 
                 onClick={(e) => handleNavClick(e, 'how-it-works')}
-                className="text-gray-700 hover:text-blue-600 font-medium text-sm uppercase tracking-wide transition-colors relative group"
+                className="text-gray-700 hover:text-blue-600 font-medium text-sm uppercase tracking-wide transition-colors"
               >
                 {t.howItWorks}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300" />
               </button>
               
               <button 
                 onClick={(e) => handleNavClick(e, 'pricing')}
-                className="text-gray-700 hover:text-blue-600 font-medium text-sm uppercase tracking-wide transition-colors relative group"
+                className="text-gray-700 hover:text-blue-600 font-medium text-sm uppercase tracking-wide transition-colors"
               >
                 {t.pricing}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300" />
               </button>
               
               <button 
                 onClick={(e) => handleNavClick(e, 'testimonials')}
-                className="text-gray-700 hover:text-blue-600 font-medium text-sm uppercase tracking-wide transition-colors relative group"
+                className="text-gray-700 hover:text-blue-600 font-medium text-sm uppercase tracking-wide transition-colors"
               >
                 {t.testimonials}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300" />
               </button>
             </div>
 
             <div className="relative ml-4">
               <button
                 onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-                className="flex items-center space-x-2 px-4 py-2 rounded-xl bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-200 border border-gray-300/50 transition-all duration-300 hover:border-gray-400 shadow-sm"
+                className="flex items-center space-x-2 px-4 py-2 rounded-xl bg-gradient-to-r from-gray-50 to-gray-100 border border-gray-300/50"
               >
                 <Globe className="h-4 w-4 text-gray-600" />
                 <span className="font-medium text-sm text-gray-700">
                   {languages.find(l => l.code === language)?.flag} 
                   <span className="ml-1.5">{languages.find(l => l.code === language)?.name}</span>
                 </span>
-                <ChevronDown className={`h-3 w-3 text-gray-500 transition-transform duration-300 ${isLanguageOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`h-3 w-3 text-gray-500 ${isLanguageOpen ? 'rotate-180' : ''}`} />
               </button>
               
               {isLanguageOpen && (
-                <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-50 backdrop-blur-sm">
+                <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-50">
                   <div className="px-3 py-2 border-b border-gray-100">
                     <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
                       {language === 'tr' ? 'Dil Seçiniz' : 'Select Language'}
@@ -207,8 +199,8 @@ export default function Navbar() {
                     <button
                       key={lang.code}
                       onClick={() => handleLanguageChange(lang.code)}
-                      className={`flex items-center w-full px-4 py-3 hover:bg-gray-50/80 transition-colors ${
-                        language === lang.code ? 'bg-blue-50/50 text-blue-600' : 'text-gray-700'
+                      className={`flex items-center w-full px-4 py-3 hover:bg-gray-50 ${
+                        language === lang.code ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
                       }`}
                     >
                       <span className="text-lg mr-3">{lang.flag}</span>
@@ -217,11 +209,7 @@ export default function Navbar() {
                         <span className="text-xs text-gray-500 mt-0.5">{lang.nativeName}</span>
                       </div>
                       {language === lang.code && (
-                        <span className="ml-auto text-blue-600">
-                          <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                          </svg>
-                        </span>
+                        <span className="ml-auto text-blue-600">✓</span>
                       )}
                     </button>
                   ))}
@@ -229,21 +217,18 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* SADECE GET STARTED - WAITLIST YOK */}
             <a 
               href="#pricing"
-              className="px-8 py-2.5 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 group relative overflow-hidden flex items-center"
+              className="px-8 py-2.5 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center"
             >
               <Sparkles className="h-4 w-4 mr-2" />
-              <span className="relative z-10">{t.getStarted}</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              {t.getStarted}
             </a>
           </div>
 
           <button 
             className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
           >
             {isMenuOpen ? (
               <X className="h-6 w-6 text-gray-700" />
@@ -253,72 +238,64 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Menu - WAITLIST YOK */}
+        {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden bg-white/95 backdrop-blur-lg border-t border-gray-200 shadow-lg rounded-b-2xl mt-2">
+          <div className="lg:hidden bg-white border-t border-gray-200">
             <div className="px-4 pt-4 pb-6 space-y-1">
               <div className="space-y-2 mb-4">
                 <button 
                   onClick={(e) => handleNavClick(e, 'features')}
-                  className="w-full text-left px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-medium transition-colors"
+                  className="w-full text-left px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-medium"
                 >
                   {t.features}
                 </button>
                 <button 
                   onClick={(e) => handleNavClick(e, 'how-it-works')}
-                  className="w-full text-left px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-medium transition-colors"
+                  className="w-full text-left px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-medium"
                 >
                   {t.howItWorks}
                 </button>
                 <button 
                   onClick={(e) => handleNavClick(e, 'pricing')}
-                  className="w-full text-left px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-medium transition-colors"
+                  className="w-full text-left px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-medium"
                 >
                   {t.pricing}
                 </button>
                 <button 
                   onClick={(e) => handleNavClick(e, 'testimonials')}
-                  className="w-full text-left px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-medium transition-colors"
+                  className="w-full text-left px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-medium"
                 >
                   {t.testimonials}
                 </button>
               </div>
 
               <div className="px-4 py-4 border-t border-gray-100">
-                <div className="flex items-center text-gray-500 mb-3">
-                  <Globe className="h-5 w-5 mr-2" />
-                  <span className="font-medium text-sm">
-                    {language === 'tr' ? 'Dil Seçin' : 'Select Language'}
-                  </span>
+                <div className="font-medium text-gray-500 mb-3">
+                  {language === 'tr' ? 'Dil Seçin' : 'Select Language'}
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
                       onClick={() => handleLanguageChange(lang.code)}
-                      className={`flex items-center justify-center p-3 rounded-xl border transition-all ${
+                      className={`flex items-center justify-center p-3 rounded-xl border ${
                         language === lang.code 
-                          ? 'bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200 text-blue-600 shadow-sm' 
+                          ? 'bg-blue-50 border-blue-200 text-blue-600' 
                           : 'border-gray-200 text-gray-700 hover:bg-gray-50'
                       }`}
                     >
-                      <span className="text-xl mr-3">{lang.flag}</span>
-                      <div className="flex flex-col items-start">
-                        <span className="text-sm font-medium">{lang.name}</span>
-                        <span className="text-xs text-gray-500 mt-0.5">{lang.nativeName}</span>
-                      </div>
+                      <span className="text-xl mr-2">{lang.flag}</span>
+                      <span className="text-sm">{lang.name}</span>
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* SADECE GET STARTED - WAITLIST YOK */}
               <div className="pt-4 border-t border-gray-100">
                 <a 
                   href="#pricing"
-                  className="block w-full text-center px-4 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:opacity-90 transition-opacity shadow-md flex items-center justify-center"
+                  className="block w-full text-center px-4 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold"
                 >
-                  <Sparkles className="h-4 w-4 mr-2" />
                   {t.getStarted}
                 </a>
               </div>
