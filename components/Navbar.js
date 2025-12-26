@@ -9,7 +9,6 @@ export default function Navbar() {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false)
   const { language, t, changeLanguage, languages } = useLanguage()
 
-  // Varsayılan dili İngilizce yap
   useEffect(() => {
     const savedLang = localStorage.getItem('postfactory-language')
     if (!savedLang) {
@@ -20,7 +19,6 @@ export default function Navbar() {
     }
   }, [])
 
-  // Dil değişince localStorage'a kaydet
   useEffect(() => {
     if (language) {
       localStorage.setItem('postfactory-language', language)
@@ -52,7 +50,7 @@ export default function Navbar() {
     
     const element = document.getElementById(targetId)
     if (element) {
-      const offset = 80 // Navbar yüksekliği için offset
+      const offset = 80
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - offset
       
@@ -64,24 +62,20 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="sticky top-0 z-50 bg-gradient-to-b from-white/95 to-white/80 backdrop-blur-lg border-b border-gray-200 shadow-sm">
+    <nav className="sticky top-[50px] md:top-0 z-50 bg-white/80 backdrop-blur-md border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* YENİ AI LOGO */}
+          {/* Logo */}
           <button 
             onClick={handleLogoClick}
             className="flex items-center space-x-4 group cursor-pointer focus:outline-none"
             aria-label="Ana sayfaya dön"
           >
-            {/* SVG Logo Container */}
             <div className="relative">
-              {/* Logo Background */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500" />
               
-              {/* Logo SVG */}
               <div className="relative h-12 w-12 rounded-xl bg-gradient-to-br from-gray-900 to-black p-2.5 shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_40px_rgba(59,130,246,0.3)]">
                 <svg viewBox="0 0 100 100" className="h-full w-full">
-                  {/* Neural Network Lines */}
                   <path
                     d="M20,50 Q50,30 80,50 Q50,70 20,50"
                     fill="none"
@@ -97,13 +91,11 @@ export default function Navbar() {
                     className="transition-all duration-500 group-hover:stroke-[2px] opacity-80"
                   />
                   
-                  {/* Neural Nodes */}
                   <circle cx="20" cy="50" r="5" fill="url(#nodeGradient)" className="transition-all duration-300 group-hover:r-6" />
                   <circle cx="50" cy="30" r="4" fill="url(#nodeGradient)" className="transition-all duration-300 group-hover:r-5" />
                   <circle cx="80" cy="50" r="5" fill="url(#nodeGradient)" className="transition-all duration-300 group-hover:r-6" />
                   <circle cx="50" cy="70" r="4" fill="url(#nodeGradient)" className="transition-all duration-300 group-hover:r-5" />
                   
-                  {/* PF Text - AI Styled */}
                   <text
                     x="50"
                     y="58"
@@ -141,11 +133,9 @@ export default function Navbar() {
                 </svg>
               </div>
               
-              {/* Active Indicator */}
               <div className="absolute -bottom-1 left-1/2 h-1 w-6 -translate-x-1/2 rounded-full bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
 
-            {/* Brand Text */}
             <div className="flex flex-col text-left">
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-2xl font-bold tracking-tight text-transparent">
                 PostFactory
@@ -158,7 +148,6 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            {/* Navigation Links */}
             <div className="flex items-center space-x-8">
               <button 
                 onClick={(e) => handleNavClick(e, 'features')}
@@ -193,7 +182,6 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Language Selector */}
             <div className="relative ml-4">
               <button
                 onClick={() => setIsLanguageOpen(!isLanguageOpen)}
@@ -240,7 +228,6 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* CTA Buttons */}
             <div className="flex items-center space-x-4">
               <a 
                 href="https://forms.gle/YOUR_FORM_LINK" 
@@ -263,7 +250,6 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
           <button 
             className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -277,11 +263,9 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="lg:hidden bg-white/95 backdrop-blur-lg border-t border-gray-200 shadow-lg rounded-b-2xl mt-2">
             <div className="px-4 pt-4 pb-6 space-y-1">
-              {/* Mobile Navigation Links */}
               <div className="space-y-2 mb-4">
                 <button 
                   onClick={(e) => handleNavClick(e, 'features')}
@@ -309,7 +293,6 @@ export default function Navbar() {
                 </button>
               </div>
 
-              {/* Language Selector Mobile */}
               <div className="px-4 py-4 border-t border-gray-100">
                 <div className="flex items-center text-gray-500 mb-3">
                   <Globe className="h-5 w-5 mr-2" />
@@ -338,7 +321,6 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {/* Mobile CTA Buttons */}
               <div className="pt-4 border-t border-gray-100 space-y-3">
                 <a 
                   href="https://forms.gle/YOUR_FORM_LINK" 
