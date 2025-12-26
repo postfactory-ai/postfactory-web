@@ -33,7 +33,7 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-20 bg-white">
+    <section id="how-it-works" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -76,12 +76,20 @@ export default function HowItWorks() {
             Join thousands of marketers, creators, and businesses who save hours every week with PostFactory AI.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="btn-primary px-8">
+            <a 
+              href="https://forms.gle/YOUR_FORM_LINK" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn-primary px-8"
+            >
               Start Free Trial
-            </button>
-            <button className="px-8 py-3 border-2 border-primary-600 text-primary-600 font-bold rounded-full hover:bg-primary-50 transition-all">
+            </a>
+            <a 
+              href="#contact" 
+              className="px-8 py-3 border-2 border-primary-600 text-primary-600 font-bold rounded-full hover:bg-primary-50 transition-all"
+            >
               Book a Demo
-            </button>
+            </a>
           </div>
         </div>
       </div>
